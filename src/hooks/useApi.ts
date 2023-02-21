@@ -17,7 +17,7 @@ const useApi = () => {
 
   const getRobots = useCallback(async () => {
     try {
-      const response = await fetch(process.env.REACT_APP_URL_API!);
+      const response = await fetch(`${process.env.REACT_APP_URL_API}/robots`);
       const robots = await response.json();
 
       if (!response.ok) {
@@ -34,7 +34,7 @@ const useApi = () => {
     async (robot: RobotStructure) => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_URL_API}${deleteRobot}${robot.id}?token=${token}`,
+          `${process.env.REACT_APP_URL_API}/robots${deleteRobot}${robot.id}?token=${token}`,
           {
             method: "DELETE",
           }
@@ -55,7 +55,7 @@ const useApi = () => {
   const createRobot = useCallback(
     async (robot: RobotStructure) => {
       const response = await fetch(
-        `${process.env.REACT_APP_URL_API}${addRobot}`,
+        `${process.env.REACT_APP_URL_API}/robots${addRobot}`,
         {
           method: "POST",
           body: JSON.stringify({
